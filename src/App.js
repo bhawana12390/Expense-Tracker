@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Grid } from '@mui/material';
+// import { PushToTalkButton, PushToTalkButtonContainer } from "@speechly/react-ui";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Details from "./components/Details/Details";
+import Main from "./components/Main/Main";
+import useStyles from "./styles";
+
+const App = () => {
+    const classes = useStyles();
+
+    return (
+        <div>
+            <Grid container spacing={3} alignItems="center" justifyContent="center" style={{ height: '100vh', padding: '0 16px' }}>
+                <Grid item xs={12} sm={4} className={classes.gridItem}>
+                    <Details title="Income"/>
+                </Grid>
+                <Grid item xs={12} sm={4} className={classes.gridItem}>
+                    <Main />
+                </Grid>
+                <Grid item xs={12} sm={4} className={classes.gridItem}>
+                    <Details title="Expense"/>
+                </Grid>
+            </Grid>
+            {/* <PushToTalkButtonContainer>
+                <PushToTalkButton />
+            </PushToTalkButtonContainer> */}
+        </div>
+    )
 }
 
-export default App;
+export default App
