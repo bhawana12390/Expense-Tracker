@@ -261,6 +261,13 @@ const Form = () => {
         });
     }, [createTransaction, incomeCategories, expenseCategories, intialState]); 
 
+    const handleAmountChange = (e) => {
+      const value = e.target.value;
+      // Remove any non-digit characters except for a single decimal point
+      const sanitizedValue = value.replace(/[^\d.]/g, '').replace(/(\..*)\./g, '$1');
+      setFormData({ ...formData, amount: sanitizedValue });
+    };
+
     const selectedCategories = formData.type === 'Income' ? incomeCategories : expenseCategories;
 
     console.log(formData);
@@ -291,7 +298,7 @@ const Form = () => {
                     </FormControl>
                 </Grid>
                 <Grid item xs={6}>
-                    <TextField type="number" label="Amount" fullWidth value={formData.amount} onChange={(e) => setFormData({ ...formData, amount: e.target.value })} />
+                    <TextField type="text" label="Amount" fullWidth value={formData.amount} onChange={handleAmountChange} inputProps={{ inputMode: 'decimal' }} />
                 </Grid>
                 <Grid item xs={6}>
                     <TextField type="date" fullWidth value={formData.date} onChange={(e) => setFormData({ ...formData, date: formatDate(e.target.value) })} />
